@@ -1,0 +1,49 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AvaloniaCheckerboard.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="using:AvaloniaCheckerboard.Controls"
+        mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="600"
+        x:Class="AvaloniaCheckerboard.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="AvaloniaCheckerboard"
+        WindowStartupLocation="CenterScreen"
+        Width="600"
+        Height="600">
+
+  <Design.DataContext>
+    <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+    <vm:MainWindowViewModel Columns="8" Rows="8" FirstColor="Black" SecondColor="White"/>
+    <!--<vm:MainWindowViewModel />-->
+  </Design.DataContext>
+
+  <DockPanel>
+    <Grid DockPanel.Dock="Top" ColumnDefinitions="80,120" RowDefinitions="Auto,Auto" Margin="5">
+      <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="5">Rows:</Label>
+      <NumericUpDown Grid.Row="0" Grid.Column="1" Margin="5" Increment="1" Minimum="1" Maximum="99" Value="{Binding Rows}" />
+      <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="5">Columns:</Label>
+      <NumericUpDown Grid.Row="1" Grid.Column="1" Margin="5" Increment="1" Minimum="1" Maximum="99" Value="{Binding Columns}" />
+    </Grid>
+    <Border BorderBrush="Red" BorderThickness="1">
+      <controls:CheckerboardControl
+        Columns="{Binding Columns}"
+        Rows="{Binding Rows}"
+        FirstColor="{Binding FirstColor}"
+        SecondColor="{Binding SecondColor}"
+      />
+    </Border>
+  </DockPanel>
+
+  <!--<controls:CheckerboardControl
+    Columns="8"
+    Rows="8"
+    FirstColor="Blue"
+    SecondColor="Red"
+  />-->
+
+  <!--<controls:CheckerboardControl />-->
+
+</Window>
