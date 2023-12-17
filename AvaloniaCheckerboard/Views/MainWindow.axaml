@@ -16,16 +16,20 @@
   <Design.DataContext>
     <!-- This only sets the DataContext for the previewer in an IDE,
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-    <vm:MainWindowViewModel Columns="8" Rows="8" FirstColor="Black" SecondColor="White"/>
-    <!--<vm:MainWindowViewModel />-->
+    <vm:MainWindowViewModel Rows="2" Columns="2" />
   </Design.DataContext>
 
   <DockPanel>
-    <Grid DockPanel.Dock="Top" ColumnDefinitions="80,120" RowDefinitions="Auto,Auto" Margin="5">
+    <Grid DockPanel.Dock="Top" ColumnDefinitions="80,160,120,180" RowDefinitions="Auto,Auto" Margin="5">
       <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="5">Rows:</Label>
-      <NumericUpDown Grid.Row="0" Grid.Column="1" Margin="5" Increment="1" Minimum="1" Maximum="99" Value="{Binding Rows}" />
+      <NumericUpDown Grid.Row="0" Grid.Column="1" Margin="5,5,30,5" Increment="1" Minimum="1" Maximum="99" Value="{Binding Rows}" />
       <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="5">Columns:</Label>
-      <NumericUpDown Grid.Row="1" Grid.Column="1" Margin="5" Increment="1" Minimum="1" Maximum="99" Value="{Binding Columns}" />
+      <NumericUpDown Grid.Row="1" Grid.Column="1" Margin="5,5,30,5" Increment="1" Minimum="1" Maximum="99" Value="{Binding Columns}" />
+
+      <Label Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="5">First Color:</Label>
+      <ComboBox Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" Width="150"></ComboBox>
+      <Label Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="5">Second Color:</Label>
+      <ComboBox Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" Width="150"></ComboBox>
     </Grid>
     <Border BorderBrush="Red" BorderThickness="1">
       <controls:CheckerboardControl

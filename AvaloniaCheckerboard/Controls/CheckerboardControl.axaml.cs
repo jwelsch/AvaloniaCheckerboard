@@ -1,10 +1,10 @@
 using Avalonia;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
+using Avalonia.Interactivity;
 using Avalonia.Media;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace AvaloniaCheckerboard.Controls;
 
@@ -32,6 +32,8 @@ public class CheckerboardCell
 [TemplatePart("PART_CheckerboardPresenter", typeof(CheckerboardControl))]
 public class CheckerboardControl : TemplatedControl
 {
+    private UniformGrid? _uniformGrid;
+
     /// <summary>
     /// Defines the <see cref="Columns"/> property.
     /// </summary>
@@ -146,14 +148,14 @@ public class CheckerboardControl : TemplatedControl
         {
             var column = i % columnCount;
             var row = i / columnCount;
-            var fill = i % 2 == row % 2 ? firstColor : secondColor;
+            var fill = column % 2 == row % 2 ? firstColor : secondColor;
 
             cells.Add(new CheckerboardCell(column, row, fill));
         }
 
         for (var i = 0; i < rowCount; i++)
         {
-            var builder = new StringBuilder();
+            var builder = new System.Text.StringBuilder();
 
             for (var j = 0; j < columnCount; j++)
             {
@@ -177,6 +179,23 @@ public class CheckerboardControl : TemplatedControl
         return cells;
     }
 
+    protected override void OnLoaded(RoutedEventArgs e)
+    {
+        base.OnLoaded(e);
+
+        if (_uniformGrid == null)
+        {
+            var childLocator = new ChildLocator();
+            _uniformGrid = childLocator.FindVisual<UniformGrid>(VisualChildren);
+        }
+
+        if (_uniformGrid != null)
+        {
+            _uniformGrid.Columns = Columns;
+            _uniformGrid.Rows = Rows;
+        }
+    }
+
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
         base.OnPropertyChanged(change);
@@ -186,6 +205,14 @@ public class CheckerboardControl : TemplatedControl
             || change.Property.Name == nameof(FirstColor)
             || change.Property.Name == nameof(SecondColor))
         {
+            //System.Diagnostics.Trace.WriteLine($"OnPropertyChanged - Rows: {Rows}, Columns: {Columns}, FirstColor: {FirstColor}, SecondColor: {SecondColor}");
+
+            if (_uniformGrid != null)
+            {
+                _uniformGrid.Columns = Columns;
+                _uniformGrid.Rows = Rows;
+            }
+
             Cells = InitializeCells(Rows, Columns, FirstColor, SecondColor);
         }
     }
