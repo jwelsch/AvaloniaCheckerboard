@@ -27,29 +27,18 @@
       <NumericUpDown Grid.Row="1" Grid.Column="1" Margin="5,5,30,5" Increment="1" Minimum="1" Maximum="99" Value="{Binding Columns}" />
 
       <Label Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="5">First Color:</Label>
-      <ComboBox Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" Width="150"></ComboBox>
+      <ComboBox Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" Width="150" ItemsSource="{Binding AvailableColors}" SelectedIndex="{Binding FirstColorSelectedIndex}" />
       <Label Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="5">Second Color:</Label>
-      <ComboBox Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" Width="150"></ComboBox>
+      <ComboBox Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" Width="150" ItemsSource="{Binding AvailableColors}" SelectedIndex="{Binding SecondColorSelectedIndex}" />
     </Grid>
-    <Border BorderBrush="Red" BorderThickness="1">
-      <controls:CheckerboardControl
-        Columns="{Binding Columns}"
-        Rows="{Binding Rows}"
-        FirstColor="{Binding FirstColor}"
-        SecondColor="{Binding SecondColor}"
-        Width="500"
-        Height="500"
+    <controls:CheckerboardControl
+      Columns="{Binding Columns}"
+      Rows="{Binding Rows}"
+      FirstColor="{Binding FirstColor}"
+      SecondColor="{Binding SecondColor}"
+      Width="400"
+      Height="400"
       />
-    </Border>
   </DockPanel>
-
-  <!--<controls:CheckerboardControl
-    Columns="8"
-    Rows="8"
-    FirstColor="Blue"
-    SecondColor="Red"
-  />-->
-
-  <!--<controls:CheckerboardControl />-->
 
 </Window>

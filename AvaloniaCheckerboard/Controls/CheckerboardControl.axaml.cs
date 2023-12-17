@@ -4,7 +4,6 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace AvaloniaCheckerboard.Controls;
 
@@ -140,8 +139,6 @@ public class CheckerboardControl : TemplatedControl
 
     private static List<CheckerboardCell> InitializeCells(int rowCount, int columnCount, Color firstColor, Color secondColor)
     {
-        System.Diagnostics.Trace.WriteLine($"InitializeCells - rowCount: {rowCount}, columnCount: {columnCount}");
-
         var cells = new List<CheckerboardCell>();
 
         for (var i = 0; i < rowCount * columnCount; i++)
@@ -151,29 +148,6 @@ public class CheckerboardControl : TemplatedControl
             var fill = column % 2 == row % 2 ? firstColor : secondColor;
 
             cells.Add(new CheckerboardCell(column, row, fill));
-        }
-
-        for (var i = 0; i < rowCount; i++)
-        {
-            var builder = new System.Text.StringBuilder();
-
-            for (var j = 0; j < columnCount; j++)
-            {
-                var color = cells[(i * columnCount) + j].Fill.Color;
-
-                var c = color.ToString().First();
-
-                if (j < columnCount - 1)
-                {
-                    builder.Append($"{c} ");
-                }
-                else
-                {
-                    builder.Append(c);
-                }
-            }
-
-            System.Diagnostics.Trace.WriteLine(builder.ToString());
         }
 
         return cells;
@@ -205,8 +179,6 @@ public class CheckerboardControl : TemplatedControl
             || change.Property.Name == nameof(FirstColor)
             || change.Property.Name == nameof(SecondColor))
         {
-            //System.Diagnostics.Trace.WriteLine($"OnPropertyChanged - Rows: {Rows}, Columns: {Columns}, FirstColor: {FirstColor}, SecondColor: {SecondColor}");
-
             if (_uniformGrid != null)
             {
                 _uniformGrid.Columns = Columns;
