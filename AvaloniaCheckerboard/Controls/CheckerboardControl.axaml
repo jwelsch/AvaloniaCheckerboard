@@ -14,8 +14,8 @@
                       ItemsSource="{TemplateBinding Cells}"
                       HorizontalAlignment="Center"
                       VerticalAlignment="Center"
-                      Width="500"
-                      Height="500">
+                      Width="{TemplateBinding Width}"
+                      Height="{TemplateBinding Height}">
           <!--Set the DataTemplate-->
           <ItemsControl.ItemTemplate>
             <DataTemplate x:DataType="controls:CheckerboardCell">

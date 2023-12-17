@@ -16,7 +16,7 @@
   <Design.DataContext>
     <!-- This only sets the DataContext for the previewer in an IDE,
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-    <vm:MainWindowViewModel Rows="2" Columns="2" />
+    <vm:MainWindowViewModel Rows="8" Columns="8" />
   </Design.DataContext>
 
   <DockPanel>
@@ -37,6 +37,8 @@
         Rows="{Binding Rows}"
         FirstColor="{Binding FirstColor}"
         SecondColor="{Binding SecondColor}"
+        Width="500"
+        Height="500"
       />
     </Border>
   </DockPanel>
