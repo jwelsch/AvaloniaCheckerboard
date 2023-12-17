@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvaloniaCheckerboard", "AvaloniaCheckerboard\AvaloniaCheckerboard.csproj", "{9A20F8A9-D4F3-4E1B-B173-CF754242D98A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AvaloniaCheckerboard", "src\AvaloniaCheckerboard\AvaloniaCheckerboard.csproj", "{9A20F8A9-D4F3-4E1B-B173-CF754242D98A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FC0287F3-DE47-46A9-B813-9F196CA97E3D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,6 +20,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9A20F8A9-D4F3-4E1B-B173-CF754242D98A} = {FC0287F3-DE47-46A9-B813-9F196CA97E3D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {49B24077-D778-426C-9885-A3AE9850E678}
