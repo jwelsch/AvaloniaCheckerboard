@@ -25,7 +25,7 @@
 
           <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
-              <UniformGrid x:Name="_uniformGrid" Columns="{TemplateBinding Columns}" Rows="{TemplateBinding Rows}" />
+              <UniformGrid Columns="{TemplateBinding Columns}" Rows="{TemplateBinding Rows}" />
             </ItemsPanelTemplate>
           </ItemsControl.ItemsPanel>
         </ItemsControl>

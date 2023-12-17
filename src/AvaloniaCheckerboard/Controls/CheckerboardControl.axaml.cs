@@ -3,6 +3,7 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.Media;
+using Avalonia.VisualTree;
 using System.Collections.Generic;
 
 namespace AvaloniaCheckerboard.Controls;
@@ -157,11 +158,7 @@ public class CheckerboardControl : TemplatedControl
     {
         base.OnLoaded(e);
 
-        if (_uniformGrid == null)
-        {
-            var childLocator = new ChildLocator();
-            _uniformGrid = childLocator.FindVisual<UniformGrid>(VisualChildren);
-        }
+        _uniformGrid = FindVisualChild<UniformGrid>(this.GetVisualChildren());
 
         if (_uniformGrid != null)
         {
@@ -187,5 +184,26 @@ public class CheckerboardControl : TemplatedControl
 
             Cells = InitializeCells(Rows, Columns, FirstColor, SecondColor);
         }
+    }
+
+    private T? FindVisualChild<T>(IEnumerable<Visual> children, string? name = null)
+    {
+        foreach (var child in children)
+        {
+            if (child is T t
+                && (name == null || name == child.Name))
+            {
+                return t;
+            }
+
+            var found = FindVisualChild<T>(child.GetVisualChildren(), name);
+
+            if (found != null)
+            {
+                return found;
+            }
+        }
+
+        return default;
     }
 }
